@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         name="Laravel"
+         xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <description>Laravel PHP_CodeSniffer ruleset</description>
+
+    <!-- What to scan -->
+    <file>app/</file>
+    <file>config/</file>
+    <file>database/</file>
+    <file>routes/</file>
+    <file>tests/</file>
+
+    <!-- How to scan -->
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="parallel" value="75"/>
+    <arg value="np"/>
+
+    <!-- Rules: PSR-12 -->
+    <rule ref="PSR12"/>
+
+    <!-- Exclude specific rules that conflict with Laravel conventions -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>database/migrations/*</exclude-pattern>
+        <exclude-pattern>database/seeders/*</exclude-pattern>
+    </rule>
+
+    <!-- Allow longer line lengths for arrays and configurations -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="180"/>
+        </properties>
+    </rule>
+
+    <!-- Ignore certain files -->
+    <exclude-pattern>bootstrap/cache/*</exclude-pattern>
+    <exclude-pattern>storage/*</exclude-pattern>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>resources/views/*</exclude-pattern>
+    <exclude-pattern>*.blade.php</exclude-pattern>
+
+</ruleset>
